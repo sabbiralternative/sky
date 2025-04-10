@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/Home/Home";
 import Sports from "../pages/Sports/Sports";
 import EventDetails from "../pages/EventDetails/EventDetails";
+import Login from "../pages/Login/Login";
 
 export const router = createBrowserRouter(
   [
@@ -27,6 +28,10 @@ export const router = createBrowserRouter(
           element: <EventDetails />,
         },
       ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ],
   {
