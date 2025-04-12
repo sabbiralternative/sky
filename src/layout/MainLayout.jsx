@@ -1,15 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/shared/Header/Header";
 import Footer from "../components/shared/Footer/Footer";
 import Banner from "../components/shared/Banner/Banner";
 
 const MainLayout = () => {
+  const location = useLocation();
   return (
     <div className="ui-mobile-viewport ui-overlay-a">
       <div data-role="page" className="ui-page ui-page-theme-a ui-page-active">
         <Header />
         <Footer />
-        <Banner />
+        {!location.pathname.includes("event-details") && <Banner />}
         <Outlet />
       </div>
     </div>

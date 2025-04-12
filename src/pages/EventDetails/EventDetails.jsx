@@ -6,12 +6,19 @@ import { setPredictOdd } from "../../redux/features/events/eventSlice";
 import Bookmaker from "../../components/modules/EventDetails/Bookmaker";
 import Fancy from "../../components/modules/EventDetails/Fancy";
 import MatchOdds from "../../components/modules/EventDetails/MatchOdds";
+import { setIsVideoAvailable } from "../../redux/features/global/globalSlice";
+
+import { Settings } from "../../api";
+import { useAccessToken } from "../../hooks/accessToken";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
   const [profit, setProfit] = useState(0);
   const dispatch = useDispatch();
   const { placeBetValues, price, stake } = useSelector((state) => state.event);
+  const { isVideoAvailable, isPlayVideo } = useSelector(
+    (state) => state.global
+  );
 
   const { data } = useGetEventDetailsQuery(
     { eventTypeId, eventId },
@@ -19,7 +26,13 @@ const EventDetails = () => {
       pollingInterval: 1000,
     }
   );
-
+  const payload = {
+    eventTypeId: eventTypeId,
+    eventId: eventId,
+    type: "video",
+    casinoCurrency: Settings.casinoCurrency,
+  };
+  const { data: video } = useAccessToken(payload, data?.score?.hasVideo);
   useEffect(() => {
     if (
       price &&
@@ -105,8 +118,29 @@ const EventDetails = () => {
   //     (match_odd) =>
   //       match_odd.btype === "MATCH_ODDS" && match_odd?.visible == true
   //   );
+
+  useEffect(() => {
+    if (data?.score?.hasVideo) {
+      dispatch(setIsVideoAvailable(true));
+    } else {
+      dispatch(setIsVideoAvailable(false));
+    }
+  }, [data, dispatch]);
+
   return (
     <div id="page" role="page">
+      {isVideoAvailable && isPlayVideo && video?.url && (
+        <div id="streamingBox" className="tv-fix">
+          <div className="tv-box">
+            <iframe
+              src={video?.url}
+              id="gliveStreamingIframe"
+              style={{ width: "100%", height: "100%", border: "none" }}
+            ></iframe>
+          </div>
+        </div>
+      )}
+
       <div id="mainWrap" className="mian-wrap">
         <div className="game-wrap">
           <h4 id="gameInfo" className="game-info">

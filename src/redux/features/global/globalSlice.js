@@ -9,6 +9,8 @@ const initialState = {
   selectedCategory: "ALL",
   showLanguageModal: false,
   showNotification: true,
+  isVideoAvailable: false,
+  isPlayVideo: false,
 };
 
 const stateSlice = createSlice({
@@ -39,6 +41,12 @@ const stateSlice = createSlice({
     setShowNotification: (state, action) => {
       state.showNotification = action.payload;
     },
+    setIsVideoAvailable: (state, action) => {
+      state.isVideoAvailable = action.payload;
+    },
+    setIsPlayVideo: (state, action) => {
+      state.isPlayVideo = action.payload;
+    },
   },
 });
 
@@ -51,6 +59,8 @@ export const {
   setSelectedCategory,
   setShowLanguageModal,
   setShowNotification,
+  setIsVideoAvailable,
+  setIsPlayVideo,
 } = stateSlice.actions;
 
 export default stateSlice.reducer;
