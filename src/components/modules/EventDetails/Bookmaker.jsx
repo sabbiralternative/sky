@@ -9,11 +9,9 @@ import {
 import BetSlip from "./BetSlip";
 import isOddSuspended from "../../../utils/isOddSuspended";
 
-const MatchOddsBookmaker = ({ data }) => {
-  const filterMatchOddsBookmaker = data?.filter(
-    (game) =>
-      (game.btype === "MATCH_ODDS" || game.btype === "BOOKMAKER") &&
-      game?.visible == true
+const Bookmaker = ({ data }) => {
+  const filterBookmaker = data?.filter(
+    (game) => game.btype === "BOOKMAKER" && game?.visible == true
   );
   const { eventId } = useParams();
   const [teamProfit, setTeamProfit] = useState([]);
@@ -156,11 +154,11 @@ const MatchOddsBookmaker = ({ data }) => {
   useEffect(() => {
     let results = [];
     if (
-      filterMatchOddsBookmaker?.length > 0 &&
+      filterBookmaker?.length > 0 &&
       exposure?.pnlBySelection &&
       Object.keys(exposure?.pnlBySelection)?.length > 0
     ) {
-      filterMatchOddsBookmaker.forEach((game) => {
+      filterBookmaker.forEach((game) => {
         const runners = game?.runners || [];
         if (runners?.length === 2) {
           const runner1 = runners[0];
@@ -199,8 +197,8 @@ const MatchOddsBookmaker = ({ data }) => {
 
   return (
     <>
-      {filterMatchOddsBookmaker?.length > 0 &&
-        filterMatchOddsBookmaker?.map((game) => {
+      {filterBookmaker?.length > 0 &&
+        filterBookmaker?.map((game) => {
           const teamProfitForGame = teamProfit?.find(
             (profit) =>
               profit?.gameId === game?.id && profit?.isOnePositiveExposure
@@ -311,4 +309,4 @@ const MatchOddsBookmaker = ({ data }) => {
   );
 };
 
-export default MatchOddsBookmaker;
+export default Bookmaker;

@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
+import StakeSetting from "../pages/StakeSetting/StakeSetting";
+import InPlay from "../pages/InPlay/InPlay";
 
 export const router = createBrowserRouter(
   [
@@ -30,6 +32,10 @@ export const router = createBrowserRouter(
           path: "/event-details/:eventTypeId/:eventId",
           element: <EventDetails />,
         },
+        {
+          path: "/in-play",
+          element: <InPlay />,
+        },
       ],
     },
     {
@@ -47,6 +53,10 @@ export const router = createBrowserRouter(
     {
       path: "/change-password",
       element: <ChangePassword />,
+    },
+    {
+      path: "/edit-stake",
+      element: <StakeSetting />,
     },
   ],
   {

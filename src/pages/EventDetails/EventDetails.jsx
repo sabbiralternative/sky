@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetEventDetailsQuery } from "../../redux/features/events/events";
 import { setPredictOdd } from "../../redux/features/events/eventSlice";
-import MatchOddsBookmaker from "../../components/modules/EventDetails/MatchOddsBookmaker";
+import Bookmaker from "../../components/modules/EventDetails/Bookmaker";
 import Fancy from "../../components/modules/EventDetails/Fancy";
+import MatchOdds from "../../components/modules/EventDetails/MatchOdds";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -113,7 +114,8 @@ const EventDetails = () => {
           </h4>
         </div>
 
-        {data?.result?.length > 0 && <MatchOddsBookmaker data={data?.result} />}
+        {data?.result?.length > 0 && <MatchOdds data={data?.result} />}
+        {data?.result?.length > 0 && <Bookmaker data={data?.result} />}
         {data?.result?.length > 0 && <Fancy data={data?.result} />}
       </div>
     </div>

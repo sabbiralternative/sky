@@ -178,6 +178,25 @@ const BetSlip = () => {
     return hasDecimal ? parseFloat(value?.toFixed(2)) : value;
   };
 
+  const handleDeleteStake = () => {
+    if (stake) {
+      const convertToString = stake.toString();
+      const removeLastElement = convertToString.substring(
+        0,
+        convertToString.length - 1
+      );
+      dispatch(setStake(Number(removeLastElement)));
+    }
+  };
+
+  const addStakeByKeyPad = (character) => {
+    const isStakeAvailable = stake ? stake?.toString() : "";
+    const converTToString =
+      typeof character === "number" ? character.toString() : character;
+    const concatStake = isStakeAvailable + converTToString;
+    dispatch(setStake(concatStake));
+  };
+
   return (
     <div
       id="betBoard_34198163_264782_780210_1"
@@ -245,47 +264,48 @@ const BetSlip = () => {
           </li>
         ))}
       </ul>
-      {/* <div id="keyboard" className="keyboard-wrap">
+      <div id="keyboard" className="keyboard-wrap">
         <ul id="numPad" className="btn-tel">
-          <li>
-            <a href="#">1</a>
+          <li onClick={() => addStakeByKeyPad(1)}>
+            <a>1</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(2)}>
+            <a>2</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(3)}>
+            <a>3</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(4)}>
+            <a>4</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(5)}>
+            <a>5</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(6)}>
+            <a>6</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(7)}>
+            <a>7</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(1)}>
+            <a>8</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(9)}>
+            <a>9</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad(0)}>
+            <a>0</a>
+          </li>
+          <li onClick={() => addStakeByKeyPad("00")}>
+            <a>00</a>
           </li>
           <li>
-            <a href="#">2</a>
-          </li>
-          <li>
-            <a href="#">3</a>
-          </li>
-          <li>
-            <a href="#">4</a>
-          </li>
-          <li>
-            <a href="#">5</a>
-          </li>
-          <li>
-            <a href="#">6</a>
-          </li>
-          <li>
-            <a href="#">7</a>
-          </li>
-          <li>
-            <a href="#">8</a>
-          </li>
-          <li>
-            <a href="#">9</a>
-          </li>
-          <li>
-            <a href="#">0</a>
-          </li>
-          <li>
-            <a href="#">00</a>
-          </li>
-          <li>
-            <a href="#">.</a>
+            {" "}
+            <a onClick={() => addStakeByKeyPad(".")}>.</a>
           </li>
         </ul>
-        <a id="delete" className="btn-delete" />
-      </div> */}
+        <a onClick={handleDeleteStake} id="delete" className="btn-delete" />
+      </div>
       <ul className="btn-list">
         <li>
           <a

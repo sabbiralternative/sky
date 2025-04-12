@@ -67,12 +67,12 @@ const Group = ({ data }) => {
                       </span>
                     )}
 
-                    {data?.[key]?.inPlay === 1 && (
-                      <span id="dateTimeInfo" className="time">
-                        In-Play
-                      </span>
+                    {data?.[key]?.inPlay === 1 ? (
+                      <span className="time">In-Play</span>
+                    ) : (
+                      <span className="time">{data?.[key]?.date}</span>
                     )}
-                    {data?.[key]?.eventTypeId === 4 && (
+                    {/* {data?.[key]?.eventTypeId === 4 && (
                       <span id="sportsBookEIcon_4" className="game-E">
                         <i />
                         Cricket
@@ -89,7 +89,7 @@ const Group = ({ data }) => {
                         <i />
                         Football
                       </span>
-                    )}
+                    )} */}
                   </dt>
                   <dd id="eventName">{data?.[key]?.eventName}</dd>
                 </dl>
