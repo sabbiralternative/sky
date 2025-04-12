@@ -4126,7 +4126,7 @@ header .a-open_tv.close_tv {
 }
 
 header .a-open_tv.close_tv img {
-  background: url(../../images/mobile/icon-TV_close.svg);
+  background: url("/src/assets/img/icon-TV_close.svg");
 }
 
 header .top-logo {
