@@ -1,12 +1,20 @@
+import { Link } from "react-router-dom";
+import { Settings } from "../../../api";
+
 const Header = () => {
   return (
     <header>
       <h1 className="top-logo" />
       <div className="btn-wrap">
-        <a className="btn-signup ui-link">Sign up</a>
-        <a className="login-index ui-link" href="#">
+        {Settings.registration && (
+          <Link to="/register" className="btn-signup ui-link">
+            Register
+          </Link>
+        )}
+
+        <Link className="login-index ui-link" to="/login">
           Login
-        </a>
+        </Link>
       </div>
       <div
         id="msgBox"

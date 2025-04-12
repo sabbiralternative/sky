@@ -1,75 +1,31 @@
-import { useDispatch } from "react-redux";
-import { useLoginMutation } from "../../redux/features/auth/authApi";
+import { useChangePasswordMutation } from "../../redux/features/auth/authApi";
 import { useForm } from "react-hook-form";
-import { Settings } from "../../api";
-import { setUser } from "../../redux/features/auth/authSlice";
+
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import images from "../../assets/images";
 import { useLogo } from "../../context/ApiProvider";
 
-const Login = () => {
+const ChangePassword = () => {
   const { logo } = useLogo();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [handleLogin] = useLoginMutation();
+  const [handleChangePassword] = useChangePasswordMutation();
+
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async ({ username, password }) => {
-    const loginData = {
-      username: username,
-      password: password,
-      b2c: Settings.b2c,
+  const onSubmit = async ({ password, newPassword, newPasswordConfirm }) => {
+    const payload = {
+      oldPassword: password,
+      password: newPassword,
+      passVerify: newPasswordConfirm,
     };
-    const result = await handleLogin(loginData).unwrap();
-
-    if (result.success) {
-      const token = result?.result?.token;
-      const bonusToken = result?.result?.bonusToken;
-      const user = result?.result?.loginName;
-      const game = result?.result?.buttonValue?.game;
-      const memberId = result?.result?.memberId;
-      dispatch(setUser({ user, token }));
-      localStorage.setItem("memberId", memberId);
-      localStorage.setItem("buttonValue", JSON.stringify(game));
-      localStorage.setItem("token", token);
-      localStorage.setItem("bonusToken", bonusToken);
-      if (result?.changePassword) {
-        navigate("/change-password");
-      } else {
-        navigate("/");
-        toast.success("Login successful");
-      }
+    const data = await handleChangePassword(payload);
+    if (data.success) {
+      toast.success(data?.result?.message);
+      localStorage.clear();
+      navigate("/login");
     } else {
-      toast.error(result?.error);
-    }
-  };
-
-  /* handle login demo user */
-  const loginWithDemo = async () => {
-    /* Random token generator */
-    /* Encrypted the post data */
-    const loginData = {
-      username: "demo",
-      password: "",
-      b2c: Settings.b2c,
-    };
-    const result = await handleLogin(loginData).unwrap();
-
-    if (result.success) {
-      const token = result?.result?.token;
-      const bonusToken = result?.result?.bonusToken;
-      const user = result?.result?.loginName;
-      const game = result?.result?.buttonValue?.game;
-
-      dispatch(setUser({ user, token }));
-      localStorage.setItem("buttonValue", JSON.stringify(game));
-      localStorage.setItem("token", token);
-      localStorage.setItem("bonusToken", bonusToken);
-      navigate("/");
-      toast.success("Login successful");
-    } else {
-      toast.error(result?.error);
+      toast.error(data?.error?.oldPassword[0]?.description);
     }
   };
 
@@ -80,20 +36,32 @@ const Login = () => {
         <h1 style={{ backgroundImage: `url(${logo})` }}>SKYEXCHANGE</h1>
       </header>
       <form onSubmit={handleSubmit(onSubmit)} className="form-login">
-        <dd id="loginNameErrorClass">
-          <input
-            style={{ width: "100%", padding: "5px", color: "black" }}
-            {...register("username", { required: true })}
-            type="text"
-            placeholder="Mobile/Username"
-          />
-        </dd>
         <dd id="passwordErrorClass">
           <input
             style={{ width: "100%", padding: "5px", color: "black" }}
             {...register("password", { required: true })}
             type="password"
-            placeholder="Password"
+            placeholder="Enter Old Password"
+          />
+        </dd>
+        <dd id="passwordErrorClass">
+          <input
+            style={{ width: "100%", padding: "5px", color: "black" }}
+            {...register("newPassword", {
+              required: true,
+            })}
+            type="password"
+            placeholder="Enter New Password"
+          />
+        </dd>
+        <dd id="passwordErrorClass">
+          <input
+            style={{ width: "100%", padding: "5px", color: "black" }}
+            {...register("newPasswordConfirm", {
+              required: true,
+            })}
+            type="password"
+            placeholder="Enter Confirm Password"
           />
           <div
             style={{
@@ -123,35 +91,9 @@ const Login = () => {
             className="btn-send ui-link"
             id="loginBtn"
           >
-            Login
+            Change Password
           </button>
         </dd>
-        {Settings.demoLogin && (
-          <dd>
-            <button
-              onClick={loginWithDemo}
-              type="button"
-              style={{ width: "100%" }}
-              className="btn-send ui-link"
-              id="loginBtn"
-            >
-              Demo Login
-            </button>
-          </dd>
-        )}
-        {Settings.registration && (
-          <dd>
-            <button
-              onClick={loginWithDemo}
-              type="button"
-              style={{ width: "100%" }}
-              className="btn-send ui-link"
-              id="loginBtn"
-            >
-              Registration
-            </button>
-          </dd>
-        )}
       </form>
 
       <ul className="policy-link" style={{ display: "block" }}>
@@ -264,4 +206,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChangePassword;

@@ -836,6 +836,7 @@ footer,
 
 @media (orientation: landscape) {
   .form-login input {
+    color: black;
     width: calc(100% - 3.72vw);
     border-radius: 1.6vw;
     font-size: 4vw;
@@ -1805,16 +1806,6 @@ input.disable {
 
   100% {
     background-position: 124.8vw 0;
-  }
-
-  @media screen and (min-aspect-ratio: 16/9) {
-    0% {
-      background-position: -70.1649175412vmax 0;
-    }
-
-    100% {
-      background-position: 70.1649175412vmax 0;
-    }
   }
 }
 
