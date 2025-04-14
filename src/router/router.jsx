@@ -9,6 +9,8 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
 import StakeSetting from "../pages/StakeSetting/StakeSetting";
 import InPlay from "../pages/InPlay/InPlay";
+import Deposit from "../pages/Deposit/Deposit";
+import Withdraw from "../pages/Withdraw/Withdraw";
 
 export const router = createBrowserRouter(
   [
@@ -35,6 +37,14 @@ export const router = createBrowserRouter(
         {
           path: "/in-play",
           element: <InPlay />,
+        },
+        {
+          path: "/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "/withdraw",
+          element: <Withdraw />,
         },
       ],
     },

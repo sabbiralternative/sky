@@ -4,13 +4,14 @@ import Footer from "../components/shared/Footer/Footer";
 import Banner from "../components/shared/Banner/Banner";
 
 const MainLayout = () => {
+  const removeBannerRoute = ["/deposit", "/event-details", "/withdraw"];
   const location = useLocation();
   return (
     <div className="ui-mobile-viewport ui-overlay-a">
       <div data-role="page" className="ui-page ui-page-theme-a ui-page-active">
         <Header />
         <Footer />
-        {!location.pathname.includes("event-details") && <Banner />}
+        {!removeBannerRoute.includes(location.pathname) && <Banner />}
         <Outlet />
       </div>
     </div>
