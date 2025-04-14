@@ -11,6 +11,14 @@ import StakeSetting from "../pages/StakeSetting/StakeSetting";
 import InPlay from "../pages/InPlay/InPlay";
 import Deposit from "../pages/Deposit/Deposit";
 import Withdraw from "../pages/Withdraw/Withdraw";
+import Account from "../pages/Account/Account";
+import DepositWithdrawReport from "../pages/DepositWithdrawReport/DepositWithdrawReport";
+import OpenBets from "../pages/OpenBets/OpenBets";
+import BettingProfitLoss from "../pages/BettingProfitLoss/BettingProfitLoss";
+import SingleProfitLoss from "../pages/BettingProfitLoss/SingleProfitLoss";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
+import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
 
 export const router = createBrowserRouter(
   [
@@ -46,6 +54,42 @@ export const router = createBrowserRouter(
           path: "/withdraw",
           element: <Withdraw />,
         },
+        {
+          path: "/account",
+          element: <Account />,
+        },
+        {
+          path: "/deposit-withdraw-report",
+          element: <DepositWithdrawReport />,
+        },
+        {
+          path: "/open-bets",
+          element: <OpenBets />,
+        },
+        {
+          path: "/betting-profit-loss",
+          element: <BettingProfitLoss />,
+        },
+        {
+          path: "betting-profit-loss/:marketId",
+          element: <SingleProfitLoss />,
+        },
+        {
+          path: "/my-bank-details",
+          element: <MyBankDetails />,
+        },
+        {
+          path: "/bonus-statement",
+          element: <BonusStatement />,
+        },
+        {
+          path: "/referral-statement",
+          element: <ReferralStatement />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
+        },
       ],
     },
     {
@@ -60,10 +104,7 @@ export const router = createBrowserRouter(
       path: "/forgot-password",
       element: <ForgotPassword />,
     },
-    {
-      path: "/change-password",
-      element: <ChangePassword />,
-    },
+
     {
       path: "/edit-stake",
       element: <StakeSetting />,

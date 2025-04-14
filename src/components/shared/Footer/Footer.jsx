@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
+  const { token } = useSelector((state) => state.auth);
   return (
     <nav>
       <ul className="mini-lobby">
@@ -39,31 +41,28 @@ const Footer = () => {
           </Link>
         </li>
         <li
-          to="/"
           id="home"
           className={`${location.pathname === "/" ? "select" : ""}`}
         >
-          <Link className="ui-link">
+          <Link to="/" className="ui-link">
             <img className="icon-home" src="/src/assets/img/transparent.gif" />
             Home
           </Link>
         </li>
         <li
           className={`${location.pathname === "/multi-market" ? "select" : ""}`}
-          to="/multi-market"
           id="multiMarket"
         >
-          <Link className="ui-link">
+          <Link to="/multi-market" className="ui-link">
             <img className="icon-pin" src="/src/assets/img/transparent.gif" />
             Multi Markets
           </Link>
         </li>
         <li
           className={`${location.pathname === "/account" ? "select" : ""}`}
-          to="/account"
           id="account"
         >
-          <Link className="ui-link">
+          <Link to={token ? "/account" : "/login"} className="ui-link">
             <img
               className="icon-account"
               src="/src/assets/img/transparent.gif"

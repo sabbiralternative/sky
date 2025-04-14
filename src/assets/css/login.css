@@ -68,7 +68,7 @@ img {
   background-size: contain !important;
 }
 
-h3 {
+.login h3 {
   background-image: linear-gradient(-180deg, #2e4b5e 0%, #243a48 82%);
   color: #fff;
   font-size: 3.7333333333vw;
