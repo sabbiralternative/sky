@@ -117,7 +117,11 @@ const Referral = ({ setShowReferral }) => {
                           {data?.link}
                         </p>
                         <button
-                          onClick={() => handleCopyToClipBoard(data?.text)}
+                          style={{ background: "var(--color1)" }}
+                          onClick={() => {
+                            handleCopyToClipBoard(data?.text);
+                            setShowReferral(false);
+                          }}
                           _ngcontent-ng-c526813732=""
                           className="btn secondary-btn"
                         >
