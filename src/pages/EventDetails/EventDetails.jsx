@@ -10,6 +10,7 @@ import { setIsVideoAvailable } from "../../redux/features/global/globalSlice";
 
 import { Settings } from "../../api";
 import { useAccessToken } from "../../hooks/accessToken";
+import ScoreCard from "../../components/modules/EventDetails/ScoreCard";
 
 const EventDetails = () => {
   const { eventTypeId, eventId } = useParams();
@@ -147,7 +148,11 @@ const EventDetails = () => {
             Cricket
           </h4>
         </div>
-
+        {eventTypeId == 4 &&
+          data?.result?.[0]?.score2?.length !== 0 &&
+          !Array.isArray(data?.result?.[0]?.score2) && (
+            <ScoreCard score2={data?.result?.[0]?.score2} />
+          )}
         {data?.result?.length > 0 && <MatchOdds data={data?.result} />}
         {data?.result?.length > 0 && <Bookmaker data={data?.result} />}
         {data?.result?.length > 0 && <Fancy data={data?.result} />}
