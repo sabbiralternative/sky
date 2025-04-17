@@ -31,7 +31,9 @@ const Group = ({ data }) => {
             <li
               onClick={() => navigateGameList(key)}
               key={key}
-              className={`${data?.[key]?.inPlay === 1 ? "inplay-on" : ""}`}
+              className={`${
+                data?.[key]?.inPlay === 1 ? "inplay-on" : "inplay-off"
+              }`}
             >
               <a id="info">
                 <dl>

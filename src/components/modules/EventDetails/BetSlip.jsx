@@ -141,6 +141,7 @@ const BetSlip = () => {
         setBetDelay("");
         toast.success(res?.result?.result?.placed?.[0]?.message);
         dispatch(setPlaceBetValues(null));
+        dispatch(setRunnerId(null));
       } else {
         setLoading(false);
         toast.error(

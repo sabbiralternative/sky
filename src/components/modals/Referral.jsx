@@ -117,7 +117,7 @@ const Referral = ({ setShowReferral }) => {
                           {data?.link}
                         </p>
                         <button
-                          style={{ background: "var(--color1)" }}
+                          style={{ background: "var(--primary-gradient)" }}
                           onClick={() => {
                             handleCopyToClipBoard(data?.text);
                             setShowReferral(false);

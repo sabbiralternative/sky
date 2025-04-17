@@ -69,7 +69,7 @@ img {
 }
 
 h3 {
-  background-image: linear-gradient(-180deg, #2e4b5e 0%, #243a48 82%);
+  background-image: var(--footer-bg);
   color: #fff;
   font-size: 3.7333333333vw;
   line-height: 2.2;
@@ -3817,7 +3817,7 @@ header {
   height: 14.6666666667vw;
   padding: 2.6666666667vw 1.8666666667vw 2.6666666667vw 0;
   background-color: #d2d2d2;
-  background-image: linear-gradient(180deg, #e6e6e6 0%, #b4b4b4 100%);
+  background-image: var(--header-bg);
   z-index: 11;
 }
 
@@ -4991,7 +4991,7 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-image: linear-gradient(-180deg, #243a48 20%, #172732 91%);
+  background: var(--footer-bg);
   color: #fff;
   z-index: 10;
 }
@@ -18346,7 +18346,7 @@ header .a-setting img {
 }
 
 header {
-  background-image: linear-gradient(180deg, #474747 0%, #070707 100%);
+  background-image: var(--header-bg);
 }
 
 header .top-logo {

@@ -111,7 +111,7 @@ const MyBankDetails = () => {
         <button
           onClick={() => setShowAddBank(true)}
           className="btn"
-          style={{ background: "var(--bg-primary90)", color: "white" }}
+          style={{ background: "var(--primary-gradient)", color: "black" }}
         >
           Add New Bank
         </button>
@@ -258,7 +258,7 @@ const MyBankDetails = () => {
                       onClick={() => handleMakeDefault(bank?.bankId)}
                       className="btn"
                       style={{
-                        background: "var(--color1)",
+                        background: "var(--primary-gradient)",
                         color: "white",
                         marginTop: "15px",
                       }}
