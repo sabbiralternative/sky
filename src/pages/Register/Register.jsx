@@ -12,6 +12,7 @@ import images from "../../assets/images";
 import { useLogo } from "../../context/ApiProvider";
 import useBalance from "../../hooks/balance";
 import { useState } from "react";
+import getOtpOnWhatsapp from "../../utils/getOtpOnWhatsapp";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -75,7 +76,9 @@ const Register = () => {
       toast.error(result?.error?.description);
     }
   };
-
+  const handleGetOtpOnWhatsapp = async () => {
+    await getOtpOnWhatsapp(mobile, setOTP);
+  };
   return (
     <div data-role="page" className="ui-page ui-page-theme-a ui-page-active">
       <header className="login-head">
@@ -90,20 +93,43 @@ const Register = () => {
             type="text"
             placeholder="Mobile Number"
           />
-          <button
-            type="button"
-            onClick={handleOTP}
+          <div
             style={{
               position: "absolute",
               right: "0px",
               top: "0px",
-              background: "black",
-              borderRadius: "3px",
-              padding: "5px 5px",
+              display: "flex",
+              alignItems: "center",
+              gap: "2px",
             }}
           >
-            Get OTP
-          </button>
+            {Settings.otpWhatsapp && (
+              <button
+                type="button"
+                disabled={mobile?.length < 10}
+                onClick={handleGetOtpOnWhatsapp}
+                style={{
+                  background: "black",
+                  borderRadius: "3px",
+                  padding: "5px 5px",
+                }}
+              >
+                Get OTP Whatsapp
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={handleOTP}
+              style={{
+                background: "black",
+                borderRadius: "3px",
+                padding: "5px 5px",
+              }}
+            >
+              Get OTP Message
+            </button>
+          </div>
         </dd>
         <dd id="passwordErrorClass">
           <input
