@@ -137,6 +137,7 @@ const Register = () => {
             {...register("otp", { required: true })}
             type="text"
             placeholder="Enter Your OTP"
+            maxLength={6}
           />
         </dd>
         <dd id="passwordErrorClass">
