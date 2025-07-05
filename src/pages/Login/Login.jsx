@@ -34,7 +34,7 @@ const Login = () => {
       localStorage.setItem("buttonValue", JSON.stringify(game));
       localStorage.setItem("token", token);
       localStorage.setItem("bonusToken", bonusToken);
-      if (result?.changePassword) {
+      if (result?.result?.changePassword) {
         navigate("/change-password");
       } else {
         navigate("/");
@@ -66,7 +66,12 @@ const Login = () => {
       localStorage.setItem("buttonValue", JSON.stringify(game));
       localStorage.setItem("token", token);
       localStorage.setItem("bonusToken", bonusToken);
-      navigate("/");
+
+      if (result?.result?.changePassword) {
+        navigate("/change-password");
+      } else {
+        navigate("/");
+      }
       toast.success("Login successful");
     } else {
       toast.error(result?.error);
