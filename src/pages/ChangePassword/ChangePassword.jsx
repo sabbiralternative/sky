@@ -32,6 +32,7 @@ const ChangePassword = () => {
     if (data.success) {
       /* After success showing success message */
       toast.success(data?.result?.message);
+
       dispatch(logout());
       navigate("/");
     } else {
