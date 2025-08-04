@@ -161,7 +161,13 @@ const PaymentMethods = ({
                   {method?.type == "usdt" ? (
                     <img
                       style={{ height: "20px", width: "20px" }}
-                      src="/usdt.png"
+                      src={"/icon/trc20.svg"}
+                    />
+                  ) : null}
+                  {method?.type == "usdt_bep20" ? (
+                    <img
+                      style={{ height: "20px", width: "20px" }}
+                      src={"/icon/bep20.svg"}
                     />
                   ) : null}
                   {method?.type == "whatsapp" ? (
@@ -718,7 +724,7 @@ const PaymentMethods = ({
           </div>
         </div>
       )}
-      {tabs === "usdt" && (
+      {tabs === "usdt" || tabs === "usdt_bep20" ? (
         <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
           <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
             <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
@@ -924,7 +930,7 @@ const PaymentMethods = ({
             </div>
           </div>
         </div>
-      )}
+      ) : null}
       {tabs === "pg" && qrcode && isDesktop && (
         <div _ngcontent-kdb-c159="" className="paymethod ng-tns-c159-13">
           <div _ngcontent-kdb-c159="" className="accountdetail ng-tns-c159-13">
