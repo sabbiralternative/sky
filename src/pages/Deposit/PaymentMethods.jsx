@@ -132,54 +132,61 @@ const PaymentMethods = ({
             Payment Methods
           </p>
 
-          {data?.result?.map((method) => {
-            return (
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={(e) => handleVisibleBankMethod(e, method)}
-                key={method?.paymentId}
-                _ngcontent-kdb-c159=""
-                className="accountdetailss  "
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    width: "100%",
-                  }}
-                  className="payment_container"
-                >
-                  <span>{method?.title?.toUpperCase()}</span>
-                  {method?.type == "qr" && <FaQrcode size={20} color="gray" />}
-                  {method?.type == "bank" && <CiBank size={20} color="gray" />}
-                  {method?.type == "upi" || method?.type == "pg" ? (
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="/upi.png"
-                    />
-                  ) : null}
-                  {method?.type == "usdt" ? (
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src={"/icon/trc20.svg"}
-                    />
-                  ) : null}
-                  {method?.type == "usdt_bep20" ? (
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src={"/icon/bep20.svg"}
-                    />
-                  ) : null}
-                  {method?.type == "whatsapp" ? (
-                    <img
-                      style={{ height: "23px", width: "23px" }}
-                      src={"/wp_support.webp"}
-                    />
-                  ) : null}
-                </div>
-              </div>
-            );
-          })}
+          {data?.result?.length > 0 &&
+            [...data.result]
+              ?.sort((a, b) => a?.sort - b?.sort)
+              ?.map((method) => {
+                return (
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={(e) => handleVisibleBankMethod(e, method)}
+                    key={method?.paymentId}
+                    _ngcontent-kdb-c159=""
+                    className="accountdetailss  "
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
+                      }}
+                      className="payment_container"
+                    >
+                      <span>{method?.title?.toUpperCase()}</span>
+                      {method?.type == "qr" && (
+                        <FaQrcode size={20} color="gray" />
+                      )}
+                      {method?.type == "bank" && (
+                        <CiBank size={20} color="gray" />
+                      )}
+                      {method?.type == "upi" || method?.type == "pg" ? (
+                        <img
+                          style={{ height: "20px", width: "20px" }}
+                          src="/upi.png"
+                        />
+                      ) : null}
+                      {method?.type == "usdt" ? (
+                        <img
+                          style={{ height: "20px", width: "20px" }}
+                          src={"/icon/trc20.svg"}
+                        />
+                      ) : null}
+                      {method?.type == "usdt_bep20" ? (
+                        <img
+                          style={{ height: "20px", width: "20px" }}
+                          src={"/icon/bep20.svg"}
+                        />
+                      ) : null}
+                      {method?.type == "whatsapp" ? (
+                        <img
+                          style={{ height: "23px", width: "23px" }}
+                          src={"/wp_support.webp"}
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
 
           {data?.result?.length === 0 && (
             <h2>No payment method available right now.</h2>
