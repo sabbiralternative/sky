@@ -20,9 +20,8 @@ const Notification = () => {
       data?.length > 0
     ) {
       dispatch(setShowNotification(true));
-      const sortNotification = data?.sort((a, b) => a.sort - b.sort);
 
-      setFilteredNotification(sortNotification);
+      setFilteredNotification(data);
     }
     if (
       data?.length > 0 &&
@@ -35,10 +34,7 @@ const Notification = () => {
       );
 
       if (filteredNotifications?.length > 0) {
-        const sortNotification = filteredNotifications?.sort(
-          (a, b) => a.sort - b.sort
-        );
-        setFilteredNotification(sortNotification);
+        setFilteredNotification(filteredNotifications);
         dispatch(setShowNotification(true));
       }
     }
